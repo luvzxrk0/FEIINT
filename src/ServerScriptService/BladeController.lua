@@ -286,7 +286,7 @@ local function handleBladeCollision(hit)
             -- Stop and retarget
             stopBlade()
             BladeController.CurrentTarget = nil
-            wait(0.5)
+            task.wait(0.5)
             BladeController.attackCycle()
         else
             -- Player hit - eliminate
@@ -307,7 +307,7 @@ local function handleBladeCollision(hit)
             -- Stop and retarget
             stopBlade()
             BladeController.CurrentTarget = nil
-            wait(0.5)
+            task.wait(0.5)
             BladeController.attackCycle()
         end
     end
@@ -320,7 +320,7 @@ function BladeController.attackCycle()
     local target = selectTarget()
     if not target then
         print("No valid targets available")
-        wait(2)
+        task.wait(2)
         return
     end
     
@@ -344,7 +344,7 @@ function BladeController.attackCycle()
     end
     
     -- Wait for targeting duration
-    wait(TARGETING_DURATION)
+    task.wait(TARGETING_DURATION)
     
     -- Hide line and dash
     hideTargetingLine()
@@ -357,7 +357,7 @@ function BladeController.attackCycle()
     dashToTarget(targetPosition)
     
     -- Wait for dash to complete or collision
-    wait(3)
+    task.wait(3)
     
     -- If still attacking (no collision), stop and retry
     if BladeController.IsAttacking then
@@ -374,7 +374,7 @@ function BladeController.attackCycle()
     end
     
     BladeController.CurrentTarget = nil
-    wait(0.5)
+    task.wait(0.5)
     
     -- Continue cycle
     BladeController.attackCycle()
@@ -395,8 +395,8 @@ function BladeController.initialize()
     BladeController.Blade.Touched:Connect(handleBladeCollision)
     
     -- Start attack cycle
-    wait(3) -- Initial delay
-    spawn(function()
+    task.wait(3) -- Initial delay
+    task.spawn(function()
         BladeController.attackCycle()
     end)
     

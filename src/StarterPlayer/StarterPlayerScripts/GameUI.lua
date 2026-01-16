@@ -106,8 +106,8 @@ speedLabel.Font = Enum.Font.GothamBold
 speedLabel.Parent = speedFrame
 
 -- Update stats periodically
-spawn(function()
-    while wait(0.5) do
+task.spawn(function()
+    while task.wait(0.5) do
         local stats = player:FindFirstChild("PlayerStats")
         if stats then
             local parries = stats:FindFirstChild("ParryCount")
@@ -149,7 +149,7 @@ if gameStartEvent then
         notification.Font = Enum.Font.GothamBold
         notification.Parent = screenGui
         
-        wait(3)
+        task.wait(3)
         notification:Destroy()
     end)
 end
@@ -179,7 +179,7 @@ if gameWinEvent then
         notification.Font = Enum.Font.GothamBold
         notification.Parent = screenGui
         
-        wait(5)
+        task.wait(5)
         notification:Destroy()
     end)
 end

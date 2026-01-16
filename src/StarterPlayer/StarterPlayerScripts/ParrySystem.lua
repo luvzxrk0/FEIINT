@@ -83,7 +83,7 @@ local function performRealParry()
     end
     
     -- Parry window (0.15 seconds for precise timing)
-    wait(0.15)
+    task.wait(0.15)
     
     isParrying = false
     if parryFlag then
@@ -94,8 +94,8 @@ local function performRealParry()
     end
     
     -- Cooldown
-    spawn(function()
-        wait(parryCooldown)
+    task.spawn(function()
+        task.wait(parryCooldown)
         canParry = true
     end)
 end
@@ -124,7 +124,7 @@ local function performFakeParry()
     end
     
     -- Longer duration (not effective for actual defense)
-    wait(0.4)
+    task.wait(0.4)
     
     isFakeParrying = false
     if parryAura then
@@ -177,7 +177,7 @@ if targetingEvent then
                     tween:Play()
                     
                     -- Remove after duration
-                    wait(duration)
+                    task.wait(duration)
                     tween:Cancel()
                     screenGui:Destroy()
                 end

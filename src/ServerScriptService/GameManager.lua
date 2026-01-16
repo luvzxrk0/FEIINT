@@ -96,7 +96,7 @@ local function checkWinCondition()
             end
         end
         -- Restart game after delay
-        wait(5)
+        task.wait(5)
         GameManager.startGame()
     end
 end
@@ -169,9 +169,9 @@ Players.PlayerRemoving:Connect(function(player)
 end)
 
 -- Start game when enough players join
-spawn(function()
+task.spawn(function()
     while true do
-        wait(5)
+        task.wait(5)
         if not GameManager.GameActive and #Players:GetPlayers() >= GameManager.MinPlayers then
             GameManager.startGame()
         end

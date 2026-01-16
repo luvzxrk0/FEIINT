@@ -10,7 +10,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RemoteEventsSetup = require(ReplicatedStorage.RemoteEventsSetup)
 
 -- Wait a moment for events to be created
-wait(0.5)
+task.wait(0.5)
 
 -- Initialize game manager
 local GameManager = require(ServerScriptService.GameManager)
