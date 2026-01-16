@@ -308,7 +308,9 @@ local function handleBladeCollision(hit)
             stopBlade()
             BladeController.CurrentTarget = nil
             task.wait(0.5)
-            BladeController.attackCycle()
+            task.spawn(function()
+                BladeController.attackCycle()
+            end)
         end
     end
 end
@@ -377,7 +379,9 @@ function BladeController.attackCycle()
     task.wait(0.5)
     
     -- Continue cycle
-    BladeController.attackCycle()
+    task.spawn(function()
+        BladeController.attackCycle()
+    end)
 end
 
 function BladeController.initialize()

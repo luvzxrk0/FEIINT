@@ -176,10 +176,12 @@ if targetingEvent then
                     })
                     tween:Play()
                     
-                    -- Remove after duration
-                    task.wait(duration)
-                    tween:Cancel()
-                    screenGui:Destroy()
+                    -- Remove after duration (async to not block event handler)
+                    task.spawn(function()
+                        task.wait(duration)
+                        tween:Cancel()
+                        screenGui:Destroy()
+                    end)
                 end
             end
         end

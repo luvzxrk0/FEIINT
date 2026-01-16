@@ -95,9 +95,11 @@ local function checkWinCondition()
                 winEvent:FireAllClients(winner)
             end
         end
-        -- Restart game after delay
-        task.wait(5)
-        GameManager.startGame()
+        -- Restart game after delay (async to not block)
+        task.spawn(function()
+            task.wait(5)
+            GameManager.startGame()
+        end)
     end
 end
 
